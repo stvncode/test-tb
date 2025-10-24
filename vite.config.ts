@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   root: 'dist',
   publicDir: '../public',
+  base: './', // Add this to use relative paths
   resolve: {
     alias: {
       '/src': path.resolve(__dirname, 'src'),
@@ -56,6 +57,8 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: '.', // Build in place, overwriting the dist directory
+    emptyOutDir: false, // Don't empty since Eleventy already populated it
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'dist/index.html'),
